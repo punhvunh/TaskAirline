@@ -25,7 +25,7 @@ public class LogisticCenter {
 			for (int i = 0; i < List.length - 1 - q; i++) {
 				if (List[i].getRangeOfFlight() > List[i + 1].getRangeOfFlight()) {
 					int temp1 = List[i].getRangeOfFlight() ;
-					List[i].rangeOfFlight= List[i + 1].rangeOfFlight;
+					List[i].rangeOfFlight = List[i + 1].rangeOfFlight;
 					List[i + 1].rangeOfFlight = temp1;
 					String temp2 = List[i].getModel();
 					List[i].model= List[i + 1].getModel();

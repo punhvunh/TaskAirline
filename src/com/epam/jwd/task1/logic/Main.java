@@ -33,5 +33,6 @@ public class Main {
 		Printer.printString("Time of travel: " + plane.findTimeOfTravel());
 		AirlinePark plane1 = AirlineData.List()[5];
 		Printer.printString("Your fare: " + plane1.findAmountOfFuel());
+
 	}
 }

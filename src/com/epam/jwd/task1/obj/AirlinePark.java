@@ -2,14 +2,20 @@ package com.epam.jwd.task1.obj;
 
 import com.epam.jwd.task1.logic.OperationWithPlane;
 
+import java.util.Objects;
+
 public class AirlinePark implements OperationWithPlane {
 
 	public String model;
-	private final int passengerCapacity;
-	private final double carryingCapacity;
+	private int passengerCapacity;
+	private double carryingCapacity;
 	public int rangeOfFlight;
-	public int fuelConsumption;
-	private final int speed;
+	private int fuelConsumption;
+	private int speed;
+
+	public AirlinePark(){
+
+	}
 
 	public AirlinePark(String model, int passengerCapacity, double carryingCapacity, int rangeOfFlight,
 					   int fuelConsumption, int speed) {
@@ -25,24 +31,48 @@ public class AirlinePark implements OperationWithPlane {
 		return model;
 	}
 
+	public void setModel(String model) {
+		this.model = model;
+	}
+
 	public int getPassengerCapacity() {
 		return passengerCapacity;
+	}
+
+	public void setPassengerCapacity(int passengerCapacity) {
+		this.passengerCapacity = passengerCapacity;
 	}
 
 	public double getCarryingCapacity() {
 		return carryingCapacity;
 	}
 
+	public void setCarryingCapacity(double carryingCapacity) {
+		this.carryingCapacity = carryingCapacity;
+	}
+
 	public int getRangeOfFlight() {
 		return rangeOfFlight;
+	}
+
+	public void setRangeOfFlight(int rangeOfFlight) {
+		this.rangeOfFlight = rangeOfFlight;
 	}
 
 	public int getFuelConsumption() {
 		return fuelConsumption;
 	}
 
+	public void setFuelConsumption(int fuelConsumption) {
+		this.fuelConsumption = fuelConsumption;
+	}
+
 	public int getSpeed() {
 		return speed;
+	}
+
+	private void setSpeed(int speed) {
+		this.speed = speed;
 	}
 
 	@Override
@@ -55,36 +85,36 @@ public class AirlinePark implements OperationWithPlane {
 		return  rangeOfFlight*fuelConsumption;
 	}
 
-	public static class CharterPlane extends AirlinePark {
-		public int rentPrice;
-
-		public CharterPlane (String model, int passengerCapacity, double carryingCapacity, int rangeOfFlight,
-				int fuelConsumption, int speed, int rentPrice) {
-			super(model, passengerCapacity, carryingCapacity, rangeOfFlight, fuelConsumption, speed);
-			this.rentPrice = rentPrice;
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
 		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final AirlinePark that = (AirlinePark) o;
+		return passengerCapacity == that.passengerCapacity
+				&& Double.compare(that.carryingCapacity, carryingCapacity) == 0 && rangeOfFlight == that.rangeOfFlight
+				&& fuelConsumption == that.fuelConsumption && speed == that.speed && Objects.equals(model, that.model);
 	}
 
-	public static class CargoPlane extends AirlinePark {
-
-		public double shippingCost;
-
-		public CargoPlane(String model, int passengerCapacity, double carryingCapacity, int rangeOfFlight, int fuelConsumption,
-				int speed, double shippingCost) {
-			super(model, passengerCapacity, carryingCapacity, rangeOfFlight, fuelConsumption, speed);
-			this.shippingCost = shippingCost;
-		}
+	@Override
+	public int hashCode() {
+		return Objects.hash(model, passengerCapacity, carryingCapacity, rangeOfFlight, fuelConsumption, speed);
 	}
 
-
-		public static class PassengerPlane extends AirlinePark {
-		public double ticketPrice;
-
-		public PassengerPlane(String model, int passengerCapacity, double carryingCapacity, int rangeOfFlight,
-							  int fuelConsumption, int speed, double ticketPrice) {
-			super(model, passengerCapacity, carryingCapacity, rangeOfFlight, fuelConsumption, speed);
-			this.ticketPrice = ticketPrice;
-		}
+	@Override
+	public String toString() {
+		return  String.format("%-10s " +
+				"Model: %s | " +
+				"Passenger Capacity: %s | " +
+				"Carrying Capacity: %s |" +
+				"Range of Flight: %s |" +
+				"Fuel Consumption: %s |" +
+				"Speed: %s |",
+				getClass().getSimpleName(), getModel(), getPassengerCapacity(), getCarryingCapacity(),
+				getRangeOfFlight(), getFuelConsumption(), getSpeed());
 	}
 }
 
